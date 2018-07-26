@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @Date: 2018/7/24 18:05
  * @Description: java中常用的排序和查找
  * <p>
- * 选择排序、插入排序、shell排序、冒泡排序
+ * 选择排序、插入排序、shell排序、冒泡排序、快速排序、归并排序
  */
 public class MySfDemo {
 
@@ -20,7 +20,50 @@ public class MySfDemo {
 //        insertSort(array);
 //        shellSort(array);
 //        bubbleSort(array);
-        quickSort(array);
+//        quickSort(array);
+//        megerSort(array);
+    }
+
+    /**
+     * @Description: 思路：归并（Merge）排序法是将两个（或两个以上）有序表合并成一个新的有序表，
+     * 即把待排序序列分为若干个子序列，每个子序列是有序的。然后再把有序子序列合并为整体有序序列。
+     * @param:
+     * @return:
+     * @date: 2018/7/25 下午5:25
+     */
+    private static void megerSort(int[] array, int start, int end) {
+        int mid = array.length / 2;
+        if (end > start) {
+            megerSort(array, start, mid);
+            megerSort(array, mid + 1, end);
+            megerDivide(array, start, mid, end);
+        }
+
+    }
+
+    /**
+     * @Description: 归并排序拆分
+     * @param:
+     * @return:
+     * @date: 2018/7/25 下午7:09
+     */
+    private static void megerDivide(int[] array, int start, int mid, int end) {
+        int[] news = new int[end - start + 1];
+
+        int s1 = start;
+        int s2 = mid + 1;
+        int k = 0;
+        //两个集合  （s1  mid） (s2 end)
+
+        while (s1 < mid && s2 < end) {
+            if (array[s1] < array[s2]) {
+                news[k++] = array[s1++];
+            } else {
+                news[k++] = array[s2++];
+            }
+        }
+
+
     }
 
     /**
